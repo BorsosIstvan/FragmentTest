@@ -13,11 +13,15 @@ public class HomeController {
 	
 	@GetMapping("/contacts")
 	public String listContacts() {
-		return "index";
+		return "contacts";
 	}
 	@GetMapping("/users")
 	public String listUsers() {
-		return "index";
+		return "users";
+	}
+	@GetMapping("/decoded")
+	public String viewDecoded() {
+		return "decoded";
 	}
 	@GetMapping("/logout")
 	public String loggingOut() {
