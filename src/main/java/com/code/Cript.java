@@ -4,6 +4,7 @@ import java.security.Key;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.Signature;
+import java.security.SignatureException;
 import java.util.Base64;
 
 import javax.crypto.Cipher;
@@ -52,6 +53,27 @@ public class Cript {
 		
 		return signature.verify(byteDigitalSignature);
 		
+	}
+	
+	// Function sign EC
+	public static String signEc(String text, String key) throws Exception {
+		Signature sign = Signature.getInstance("SHA256withECDSA");
+		Key privateKey = generateKey.getEcPrivateKey(key);
+		sign.initSign((PrivateKey) privateKey);
+		sign.update(text.getBytes("UTF-8"));
+		byte[] signature = sign.sign();
+		
+		return Base64.getEncoder().encodeToString(signature);
+	}
+	
+	// Function verify Ec signature
+	public static boolean verifyEc(String text, String signString, String key) throws Exception {
+		Signature sign = Signature.getInstance("SHA256withECDSA");
+		Key publicKey = generateKey.getEcPublicKey(key);
+		sign.initVerify((PublicKey) publicKey);
+		sign.update(text.getBytes());
+		
+		return sign.verify(Base64.getDecoder().decode(signString));
 	}
 
 }

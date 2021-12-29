@@ -26,7 +26,7 @@ public class testCript {
 		System.out.println(textDecrypted);
 		
 		// generate keypair
-		KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("DSA");
+		KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("DSA"); // DSA , EC
 		keyPairGenerator.initialize(512);
 		KeyPair keyPair = keyPairGenerator.generateKeyPair();
 		
@@ -62,19 +62,34 @@ public class testCript {
 		System.out.println("verified get = "+verifiedGet);
 		
 		// check greenpass keys
-		String greenPrvKey = "MHQCAQEEIPWKbSezZMY1gCpvN42yaVv76Lo47FvSsVZpQl0a5lWRoAcGBSuBBAAK"
-				+ "oUQDQgAE6DeIun4EgMBLUmbtjQw7DilMJ82YIvOR2jz/IK0R/F7/zXY1z+gqvFXf"
-				+ "DcJqR5clbAYlO9lHmvb4lsPLZHjugQ==";
+		String greenPrvKey = "MD4CAQAwEAYHKoZIzj0CAQYFK4EEAAoEJzAlAgEBBCA/91TedBb60HkhPBTZZE7WNhCjnb1UTBxRNnlMtN9wZg==";
 		String greenPubKey = "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEnL9+WnIp9fvbcocZSGUFlSw9ffW/jbMONzcvm1X4c+pXOPEs7C4/83+PxS8Swea2hgm/tKt4PI0z8wgnIehojw==";
 		// generate keys from green
-//		Key grePrvKeyGen = generateKey.getPrivateKey(greenPrvKey);
-		Key grePubKeyGen = generateKey.getPublicKey(greenPubKey);
+		Key grePrvKeyGen = generateKey.getEcPrivateKey(greenPrvKey);
+		Key grePubKeyGen = generateKey.getEcPublicKey(greenPubKey);
 		// try sign text with green keys
 //		String signGreText = Cript.sign(text, grePrvKeyGen);
 		// verify if work
 //		boolean verifiedGreen = Cript.verify(text, signatureGet, grePubKeyGen);
 //		System.out.println("Green signature validation is: "+verifiedGreen);
 		
+		// attempt to generate ECDSA key
+		KeyPair kp = generateKey.genEcKey();
+		String puks = Base64.getEncoder().encodeToString(kp.getPublic().getEncoded());
+		String prks = Base64.getEncoder().encodeToString(kp.getPrivate().getEncoded());
+		
+		System.out.println("publicKey: "+prks);
+		System.out.println("privateKey: "+puks);
+		
+		// sign Ec text
+		String signatureEcText = Cript.signEc(text, prks);
+		System.out.println("Signature Ec : "+signatureEcText);
+		
+		// verify signature
+		boolean verifiedEc = Cript.verifyEc(text, signatureEcText, greenPubKey);
+		System.out.println("Text signature Ec validation is: "+verifiedEc);
+		
+			
 	}
 	
 

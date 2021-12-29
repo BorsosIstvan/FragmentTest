@@ -9,8 +9,21 @@
 	<div layout:fragment="content">
 		
 		<h2>Decoded data from qr</h2>
-		<p>{1:'RO',4:1668979348,6:1637443348,-260:{1:{'r':[{'ci':'URN:UVCI:01:RO:858CC18CFCF5965EF82F60E493349AA5#K','co':'RO','df':'2021-04-04','du':'2021-10-04','fr':'2021-02-20','is':'Ministry of Health, Roemenie','tg':'840539006'}],'dob':'1970-05-07','nam':{'fn':'Borsos','gn':'Istvan','fnt':'BORSOS','gnt':'ISTVAN'},'ver':'1.2.1'}}}</p>
-<img src="img/greenpass.png">
+		<p>Simpson green pass</p>
+		<br>
+		<form action="encode_simpson"  method="post">
+		<button type="submit">Encode Simpson QR</button>
+		</form>
+		<br>
+		<p>Adolf green pass</p>
+		<br>
+		<form action="encode_adolf"  method="post">
+		<button type="submit">Encode Adolf QR</button>
+		</form>
+		<br>
+		
+
+<img class="NO-CACHE" src="img/greenpass.png">
 
 
 	</div>
