@@ -34,14 +34,14 @@ public class GenerateGreenPass {
     }
    
     // Driver code
-    public static void GenerateGreenPass(String data)
+    public static void GenerateGreenPass(String data, String name)
         throws WriterException, IOException,
                NotFoundException
     {
  
       
         // The path where the image will get saved
-        String path = "src\\main\\resources\\static\\img\\greenpass.png";
+        String path = "src\\main\\resources\\static\\img\\"+name+".png";
  
         // Encoding charset
         String charset = "UTF-8";

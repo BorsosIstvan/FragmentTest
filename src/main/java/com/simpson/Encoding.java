@@ -129,7 +129,7 @@ public class Encoding {
 		
 		// generate qr simpson
 		
-		GenerateGreenPass.GenerateGreenPass(hc1);
+		GenerateGreenPass.GenerateGreenPass(hc1 , "simpson");
 		
 	}
 

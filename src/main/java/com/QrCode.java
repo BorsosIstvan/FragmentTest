@@ -52,7 +52,7 @@ public class QrCode {
         String genText = "HC1:"+Base45.getEncoder().encodeToString(compressedbyte);
         
 //        System.out.println(genText);
-        GenerateGreenPass.GenerateGreenPass(genText);
+        GenerateGreenPass.GenerateGreenPass(genText , "greenpass");
         
 	}
 

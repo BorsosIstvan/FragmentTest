@@ -52,7 +52,7 @@ public class test {
 //		
 //		//generate qr from dataArp
 //		String text = preparedText;
-		GenerateGreenPass.GenerateGreenPass(dataAdf);
+		GenerateGreenPass.GenerateGreenPass(dataAdf , "adolf");
 
 		
 		
